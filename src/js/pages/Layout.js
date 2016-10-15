@@ -11,7 +11,7 @@ export default class Layout extends React.Component {
 
         return (
             <div>
-               <Nav location={locaiton} />
+               <Nav location={location} />
                <div>
                   {this.props.children}
                </div>

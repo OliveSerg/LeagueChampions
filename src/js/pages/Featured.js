@@ -5,13 +5,16 @@ import MatchStore from "../stores/MatchStore"
 
 export default class Featured extends React.Component {
     constructor() {
-        super()    
+        super()
+        this.state = {
+          matches: MatchStore.matches
+        }
     }
 
     render() {
         return (
             <div>
-            </div>        
+            </div>
         )
     }
 }

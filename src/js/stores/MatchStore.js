@@ -3,42 +3,48 @@ import dispatcher from "../dispatcher"
 import axios from "axios"
 import key from "../api-key"
 
-const key = key.key
 const urlMatches = 'https://na.api.pvp.net/observer-mode/rest/featured?api_key='
 const imageURL = 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/'
 
-function urlChampion(id){
-  return `https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/${id}?champData=image&api_key=`
-}
+const urlChampions = 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?dataById=true&champData=image&api_key='
+
 
 
 class MatchStore extends EventEmitter {
     constructor() {
         super()
-        axios.get(urlMatches + key)
-        .then((response) =>{
-          response.data.gameList.forEach((gameObj)=>{
-            gameObj
-          })
-          this.matches = response.data
-          console.log(response.data);
-        })
+        this.matches  = this.getMatches()
+        this.champions = this.getChampionsImages()
     }
 
-    getChampionImage(id){
-      axios.get(urlChampion(id) + key)
+    getMatches(){
+      axios.get(urlMatches + key.key)
       .then((response) =>{
-        console.log(response);
-        return imageURL + response.data.image.full
-      }
+        console.log(response.data)
+        return response.data
+      })
+    }
+
+    getChampionsImages(){
+      axios.get(urlChampions + key.key)
+      .then((response) =>{
+        console.log(response.data)
+        return response.data
+      })
     }
 
     reloadMatches() {
-        this.emit("change")
+      this.matches = getMatches()
+      this.emit("change", this.matches)
     }
 
     handleActions(action){
-
+      switch(action.type){
+        case "RELOAD": {
+          thi.reloadMatches()
+          break
+        }
+      }
     }
 }
 

@@ -1,6 +1,6 @@
-import React form 'react';
+import React from 'react';
 
-export default class FeaturedMatches extends React.Components {
+export default class FeaturedMatches extends React.Component {
     constructor() {
         super()
     }

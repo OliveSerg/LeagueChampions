@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class FeaturedMatches extends React.Component {
-    constructor() {
+    constructor(props) {
         super()
     }
 

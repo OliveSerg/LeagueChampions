@@ -4,26 +4,12 @@ import axios from "axios"
 import key from "../api-key"
 import Promise from "promise"
 
-const urlMatches = 'https://na.api.pvp.net/observer-mode/rest/featured?api_key='
 const imageURL = 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/'
-const urlChampions = 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?dataById=true&champData=image&api_key='
-
 
 
 class MatchStore extends EventEmitter {
     constructor() {
         super()
-        var requests = [
-          axios.get(urlMatches + key.key), axios.get(urlChampions + key.key)
-        ];
-        Promise.all(requests).then((responses)=> {
-          this.matches = responses[0].data
-          this.champions = responses[1].data.data
-          this.applyImageURL()
-          console.log(this);
-        }).catch((err)=>{
-          console.log(err);
-        });
     }
 
     applyImageURL(){
@@ -44,14 +30,29 @@ class MatchStore extends EventEmitter {
       return (imageURL + championPNGString)
     }
 
+    getMatches(){
+      return this.matches
+    }
+
     reloadMatches(data) {
       this.matches = data
       this.applyImageURL()
       this.emit("change")
     }
 
+    receiveMatches(response) {
+      this.matches = response[0].data
+      this.champions = response[1].data.data
+      this.applyImageURL()
+      this.emit("change")
+    }
+
     handleActions(action){
       switch(action.type){
+        case 'RECEIVE':{
+          this.receiveMatches(action.data)
+          break;
+        }
         case "RELOAD": {
           this.reloadMatches(action.data)
           break

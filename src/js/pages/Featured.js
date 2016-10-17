@@ -6,14 +6,25 @@ import MatchStore from "../stores/MatchStore"
 export default class Featured extends React.Component {
     constructor() {
         super()
-        this.state = {
-          matches: MatchStore.matches
-        }
+    }
+    componentWillMount() {
+
+    }
+
+    componentWillUnmount() {
+
+    }
+
+    reloadMatches(){
+      MatchActions.reloadMatches();
     }
 
     render() {
+      // const {matches} = this.state;
+
         return (
             <div>
+              <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
             </div>
         )
     }

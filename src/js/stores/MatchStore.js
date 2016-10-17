@@ -1,12 +1,11 @@
 import {EventEmitter} from 'events'
 import dispatcher from "../dispatcher"
 import axios from "axios"
-import _ from "lodash"
 import key from "../api-key"
+import Promise from "promise"
 
 const urlMatches = 'https://na.api.pvp.net/observer-mode/rest/featured?api_key='
 const imageURL = 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/'
-
 const urlChampions = 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?dataById=true&champData=image&api_key='
 
 
@@ -14,28 +13,28 @@ const urlChampions = 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/cha
 class MatchStore extends EventEmitter {
     constructor() {
         super()
-        this.matches  = this.getMatches()
-        this.champions = this.getChampions()
-    }
-
-    getMatches(){
-      axios.get(urlMatches + key.key)
-      .then((response) =>{
-        return response.data
-      })
+        var requests = [
+          axios.get(urlMatches + key.key), axios.get(urlChampions + key.key)
+        ];
+        Promise.all(requests).then((responses)=> {
+          this.matches = responses[0].data
+          this.champions = responses[1].data.data
+          this.applyImageURL()
+          console.log(this);
+        }).catch((err)=>{
+          console.log(err);
+        });
     }
 
     applyImageURL(){
       this.matches.gameList.forEach((game)=>{
         if (game.bannedChampions.length > 0) {
           game.bannedChampions.forEach((champBanned)=>{
-            champBanned.imageURL = this.getChampionImgURL(champBanned.id)
-            console.log(playerChamp);
+            champBanned.imageURL = this.getChampionImgURL(champBanned.championId)
           })
         }
         game.participants.forEach((playerChamp)=>{
-          playerChamp.imageURL = this.getChampionImgURL(playerChamp.id)
-          console.log(playerChamp);
+          playerChamp.imageURL = this.getChampionImgURL(playerChamp.championId)
         })
       })
     }
@@ -45,17 +44,10 @@ class MatchStore extends EventEmitter {
       return (imageURL + championPNGString)
     }
 
-    getChampions(){
-      axios.get(urlChampions + key.key)
-      .then((response) =>{
-        return response.data
-      })
-    }
-
     reloadMatches(data) {
       this.matches = data
       this.applyImageURL()
-      this.emit("change", this.matches)
+      this.emit("change")
     }
 
     handleActions(action){

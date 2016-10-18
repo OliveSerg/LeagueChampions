@@ -32,13 +32,23 @@ export default class Featured extends React.Component {
     }
 
     render() {
-      const {matches} = this.state;
-      
-      console.log(matches);
+      const {gameList} = this.state.matches;
+      // const MatchComponent = gameList.map((match) => {
+      //   return <FeaturedMatches key={match.gameId} {...match}/>
+      // })
+      if (gameList) {
         return (
-            <div>
-              <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
-            </div>
+          <div>
+            <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
+            <FeaturedMatches key={0} {...gameList[0]}/>
+          </div>
         )
+      }else {
+        return (
+          <div>
+            <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
+          </div>
+        )
+      }
     }
 }

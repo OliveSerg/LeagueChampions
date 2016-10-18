@@ -4,9 +4,6 @@ import axios from "axios"
 import key from "../api-key"
 import Promise from "promise"
 
-const imageURL = 'http://ddragon.leagueoflegends.com/cdn/5.2.1/img/champion/'
-
-
 class MatchStore extends EventEmitter {
     constructor() {
         super()
@@ -26,8 +23,12 @@ class MatchStore extends EventEmitter {
     }
 
     getChampionImgURL(championId){
-      let championPNGString = this.champions[championId].image.full
-      return (imageURL + championPNGString)
+      let championPNGString = this.champions.data[championId].image.full
+      let imageURL =`http://ddragon.leagueoflegends.com/cdn/${this.champions.version}/img/champion/`
+      return {
+        large: `${imageURL}loading/${championPNGString}`,
+        small: imageURL + championPNGString
+      }
     }
 
     getMatches(){
@@ -42,7 +43,7 @@ class MatchStore extends EventEmitter {
 
     receiveMatches(response) {
       this.matches = response[0].data
-      this.champions = response[1].data.data
+      this.champions = response[1].data
       this.applyImageURL()
       this.emit("change")
     }

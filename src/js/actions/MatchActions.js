@@ -10,6 +10,7 @@ export function loadMatches(){
     axios.get(urlMatches + key.key), axios.get(urlChampions + key.key)
   ];
   Promise.all(requests).then((responses)=> {
+    console.log(responses);
     dispatcher.dispatch({
       type: "RECEIVE",
       data: responses

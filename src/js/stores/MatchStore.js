@@ -24,9 +24,10 @@ class MatchStore extends EventEmitter {
 
     getChampionImgURL(championId){
       let championPNGString = this.champions.data[championId].image.full
+      let championJPGString = championPNGString.replace(/.png$/,'_0.jpg')
       let imageURL =`http://ddragon.leagueoflegends.com/cdn/${this.champions.version}/img/champion/`
       return {
-        large: `${imageURL}loading/${championPNGString}`,
+        large: `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championJPGString}`,
         small: imageURL + championPNGString
       }
     }

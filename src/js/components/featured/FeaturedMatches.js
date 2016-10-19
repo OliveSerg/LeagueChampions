@@ -1,21 +1,25 @@
 import React from 'react';
 import _ from "lodash"
 import Champion from "./Champions"
+import MatchInfo from "./MatchInfo"
 
 export default class FeaturedMatches extends React.Component {
     constructor(props) {
       super()
+      this.state ={
+        teams: this.filterTeams(props)
+      }
     }
 
-    filterTeams(){
+    filterTeams(props){
       let filteredTeams = []
       filteredTeams.push({
-        bannedChampions: _.filter(this.props.bannedChampions, {teamId: 100}),
-        participants: _.filter(this.props.participants, {teamId: 100})
+        bannedChampions: _.filter(props.bannedChampions, {teamId: 100}),
+        participants: _.filter(props.participants, {teamId: 100})
       })
       filteredTeams.push({
-        bannedChampions: _.filter(this.props.bannedChampions, {teamId: 200}),
-        participants: _.filter(this.props.participants, {teamId: 200})
+        bannedChampions: _.filter(props.bannedChampions, {teamId: 200}),
+        participants: _.filter(props.participants, {teamId: 200})
       })
       return filteredTeams
     }
@@ -23,16 +27,15 @@ export default class FeaturedMatches extends React.Component {
     getChampionDiv(championsArray){
       if (championsArray) {
         return championsArray.map((champion)=>{
-          <Champion key={champion.championId + champion.teamId} {...champion}/>
+          return <Champion key={champion.championId + champion.teamId} {...champion}/>
         })
       }
     }
 
     render() {
-      const teams = this.filterTeams()
+      const {teams} = this.state
       const blueTeam = teams[0]
       const redTeam = teams[1]
-      console.log(teams);
 
       const BlueTeamChampions = this.getChampionDiv(blueTeam.participants)
       const BlueTeamBanChamps = this.getChampionDiv(blueTeam.bannedChampions)
@@ -49,7 +52,9 @@ export default class FeaturedMatches extends React.Component {
             <div>
               {BlueTeamBanChamps}
             </div>
-
+            <div>
+              
+            </div>
             <div>
               {RedTeamBanChamps}
             </div>

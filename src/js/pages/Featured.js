@@ -36,8 +36,9 @@ export default class Featured extends React.Component {
 
       if (gameList) {
         const MatchComponent = gameList.map((match) => {
-          return <FeaturedMatches class="match" key={match.gameId} {...match}/>
+          return <FeaturedMatches key={match.gameId} {...match}/>
         })
+        console.log(MatchComponent);
         return (
           <div>
             <button onClick={this.reloadMatches.bind(this)}>Reload!</button>

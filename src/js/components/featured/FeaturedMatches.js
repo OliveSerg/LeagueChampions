@@ -45,34 +45,32 @@ export default class FeaturedMatches extends React.Component {
 
       if (this.props.bannedChampions) {
         return(
-          <div>
-            <div>
+          <div class="row">
+            <div class="row col s12">
               {BlueTeamChampions}
             </div>
-            <div>
-              {BlueTeamBanChamps}
-            </div>
-            <div>
+            <div class="row col s10">
+              <div class="row col s4">
+                {BlueTeamBanChamps}
+              </div>
               <MatchInfo key={this.props.gameId} {...this.props}/>
+              <div class="row col s4">
+                {RedTeamBanChamps}
+              </div>
             </div>
-            <div>
-              {RedTeamBanChamps}
-            </div>
-            <div>
+            <div class="row col s12">
               {RedTeamChampions}
             </div>
           </div>
         )
       } else {
         return(
-          <div>
-            <div>
+          <div class="row">
+            <div class="row col s12">
               {BlueTeamChampions}
             </div>
-            <div>
-              <MatchInfo key={this.props.gameId} {...this.props}/>
-            </div>
-            <div>
+            <MatchInfo key={this.props.gameId} {...this.props}/>
+            <div class="row col s12">
               {RedTeamChampions}
             </div>
           </div>

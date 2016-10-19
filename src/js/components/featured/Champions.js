@@ -8,14 +8,14 @@ export default class Champion extends React.Component {
   render() {
     if (this.props.summonerName) {
       return (
-        <div>
-          <img src={this.props.imageURL.large}/>
+        <div class='col s2'>
+          <img class="responsive-img " src={this.props.imageURL.large}/>
         </div>
       )
     } else {
       return(
-        <div>
-          <img src={this.props.imageURL.small}/>
+        <div class='col s4'>
+          <img class="responsive-img" src={this.props.imageURL.small}/>
         </div>
       )
     }

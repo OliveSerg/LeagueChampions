@@ -1,6 +1,7 @@
 import dispatcher from "../dispatcher"
 import axios from "axios"
-import key from "../api-key"
+import key from "../data/api-key"
+import Promise from "promise"
 
 const urlMatches = 'https://na.api.pvp.net/observer-mode/rest/featured?api_key='
 const urlChampions = 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?dataById=true&champData=image&api_key='

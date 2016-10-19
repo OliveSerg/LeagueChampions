@@ -1,8 +1,5 @@
 import {EventEmitter} from 'events'
 import dispatcher from "../dispatcher"
-import axios from "axios"
-import key from "../api-key"
-import Promise from "promise"
 
 class MatchStore extends EventEmitter {
     constructor() {

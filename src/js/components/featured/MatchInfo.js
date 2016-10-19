@@ -1,4 +1,5 @@
-import React from "react"
+import React from "react";
+import matchMakingQueues from '../../data/matchmaking_queues'
 
 export default class MatchInfo extends React.Component {
   constructor(props){
@@ -9,7 +10,7 @@ export default class MatchInfo extends React.Component {
     const {gameQueueConfigId, gameStartTime} = this.props
     return (
       <div>
-        <p>{gameQueueConfigId}</p>
+        <p>{matchMakingQueues[gameQueueConfigId]}</p>
         <img src=""/>
         <p>{gameStartTime}</p>
       </div>

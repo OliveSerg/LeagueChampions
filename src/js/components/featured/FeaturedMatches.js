@@ -53,7 +53,7 @@ export default class FeaturedMatches extends React.Component {
               {BlueTeamBanChamps}
             </div>
             <div>
-              
+              <MatchInfo key={this.props.gameId} {...this.props}/>
             </div>
             <div>
               {RedTeamBanChamps}
@@ -70,7 +70,7 @@ export default class FeaturedMatches extends React.Component {
               {BlueTeamChampions}
             </div>
             <div>
-
+              <MatchInfo key={this.props.gameId} {...this.props}/>
             </div>
             <div>
               {RedTeamChampions}

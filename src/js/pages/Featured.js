@@ -35,7 +35,6 @@ export default class Featured extends React.Component {
       const {gameList} = this.state.matches;
 
       if (gameList) {
-        console.log('hit');
         const MatchComponent = gameList.map((match) => {
           return <FeaturedMatches class="match" key={match.gameId} {...match}/>
         })

@@ -5,8 +5,12 @@ export default class DotIndex extends React.Component {
     super()
   }
 
+  toggleSlide(){
+    console.log(this.props);
+  }
+
   render() {
-    console.log(this);
+    this.toggleSlide()
     return(
       <button>"DOT"</button>
     )

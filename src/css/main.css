@@ -1,8 +1,13 @@
 p{
   margin: 0;
 }
-
-.my-carousel > div {
+.champion {
+  width: 20%;
+  margin-left: auto;
+  left: auto;
+  right: auto;
+}
+.my-carousel > .match {
   display: none;
 }
 

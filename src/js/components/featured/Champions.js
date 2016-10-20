@@ -8,7 +8,7 @@ export default class Champion extends React.Component {
   render() {
     if (this.props.summonerName) {
       return (
-        <div class='col s2'>
+        <div class='col champion'>
           <img class="responsive-img " src={this.props.imageURL.large}/>
           <p class="center-align">{this.props.summonerName}</p>
         </div>

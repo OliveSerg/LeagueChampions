@@ -36,14 +36,14 @@ export default class Featured extends React.Component {
 
       if (gameList) {
         return (
-          <div>
+          <div class="container">
             <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
             <Carousel {...this.state.matches}/>
           </div>
         )
       }else {
         return (
-          <div>
+          <div class="container">
             <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
           </div>
         )

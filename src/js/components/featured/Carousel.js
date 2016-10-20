@@ -47,7 +47,7 @@ export default class Carousel extends React.Component {
         return <FeaturedMatch active={isActive} key={match.gameId} {...match}/>
       })
       const DotComponents = gameList.map((match, index) => {
-        return <button onClick={this.toggleSlide.bind(this)} key={index} name={index}>"DOT"</button>
+        return <button onClick={this.toggleSlide.bind(this)} key={index} name={index}>DOT</button>
       })
       return(
           <div class="my-carousel row">

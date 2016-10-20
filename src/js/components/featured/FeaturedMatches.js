@@ -6,7 +6,7 @@ import MatchInfo from "./MatchInfo"
 export default class FeaturedMatches extends React.Component {
     constructor(props) {
       super()
-      this.state ={
+      this.state = {
         teams: this.filterTeams(props)
       }
     }
@@ -34,6 +34,12 @@ export default class FeaturedMatches extends React.Component {
 
     render() {
       const {teams} = this.state
+      const {bannedChampions, active} = this.props
+      let classes = "row"
+      if (active) {
+        console.log(this);
+        classes += " active-slide"
+      }
       const blueTeam = teams[0]
       const redTeam = teams[1]
 
@@ -43,9 +49,9 @@ export default class FeaturedMatches extends React.Component {
       const RedTeamChampions = this.getChampionDiv(redTeam.participants)
       const RedTeamBanChamps = this.getChampionDiv(redTeam.bannedChampions)
 
-      if (this.props.bannedChampions) {
+      if (bannedChampions) {
         return(
-          <div class="row">
+          <div class={classes}>
             <div class="row col s12">
               {BlueTeamChampions}
             </div>
@@ -65,7 +71,7 @@ export default class FeaturedMatches extends React.Component {
         )
       } else {
         return(
-          <div class="row">
+          <div class={classes}>
             <div class="row col s12">
               {BlueTeamChampions}
             </div>

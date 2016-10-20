@@ -10,9 +10,9 @@ export default class MatchInfo extends React.Component {
     const {gameQueueConfigId, gameStartTime} = this.props
     return (
       <div class="row col s4 valign-wrapper">
-        <p>{matchMakingQueues[gameQueueConfigId]}</p>
+        <p class="center-align">{matchMakingQueues[gameQueueConfigId]}</p>
         <img src=""/>
-        <p>{gameStartTime}</p>
+        <p class="center-align">{gameStartTime}</p>
       </div>
     )
   }

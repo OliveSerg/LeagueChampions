@@ -10,6 +10,7 @@ export default class Champion extends React.Component {
       return (
         <div class='col s2'>
           <img class="responsive-img " src={this.props.imageURL.large}/>
+          <p class="center-align">{this.props.summonerName}</p>
         </div>
       )
     } else {

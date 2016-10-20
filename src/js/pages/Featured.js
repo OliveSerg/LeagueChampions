@@ -1,7 +1,7 @@
 import React from 'react'
-import FeaturedMatches from "../components/featured/FeaturedMatches"
 import * as MatchActions from "../actions/MatchActions"
 import MatchStore from "../stores/MatchStore"
+import Carousel from "../components/featured/Carousel"
 
 export default class Featured extends React.Component {
     constructor() {
@@ -35,14 +35,10 @@ export default class Featured extends React.Component {
       const {gameList} = this.state.matches;
 
       if (gameList) {
-        const MatchComponent = gameList.map((match) => {
-          return <FeaturedMatches key={match.gameId} {...match}/>
-        })
-        console.log(MatchComponent);
         return (
           <div>
             <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
-            {MatchComponent}
+            <Carousel {...this.state.matches}/>
           </div>
         )
       }else {

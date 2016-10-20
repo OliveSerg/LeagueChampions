@@ -1,1 +1,11 @@
+p{
+  margin: 0;
+}
 
+.my-carousel > div {
+  display: none;
+}
+
+.my-carousel > .active-slide {
+  display: block;
+}

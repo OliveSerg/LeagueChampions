@@ -35,9 +35,8 @@ export default class FeaturedMatches extends React.Component {
     render() {
       const {teams} = this.state
       const {bannedChampions, active} = this.props
-      let classes = "row"
+      let classes = "match row col s10"
       if (active) {
-        console.log(this);
         classes += " active-slide"
       }
       const blueTeam = teams[0]

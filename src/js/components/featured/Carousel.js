@@ -1,5 +1,6 @@
 import React from "react";
 import FeaturedMatch from "./FeaturedMatches"
+import DotIndex from "./DotIndex"
 
 export default class Carousel extends React.Component {
     constructor(props){
@@ -32,17 +33,30 @@ export default class Carousel extends React.Component {
       })
     }
 
+    toggleSlide(ev){
+      let slide = parseInt(ev.target.name)
+      this.setState({
+        currentSlide: slide
+      })
+    }
+
     render() {
       const {gameList, currentSlide} = this.state
       const MatchComponents = gameList.map((match, index) => {
         let isActive = currentSlide === index
         return <FeaturedMatch active={isActive} key={match.gameId} {...match}/>
       })
+      const DotComponents = gameList.map((match, index) => {
+        return <button onClick={this.toggleSlide.bind(this)} key={index} name={index}>"DOT"</button>
+      })
       return(
-          <div class="my-carousel">
-            <button onClick={this.prevSlide.bind(this)}>Previous</button>
-            <button onClick={this.nextSlide.bind(this)}>Next</button>
+          <div class="my-carousel row">
+            <button class="col s1" onClick={this.prevSlide.bind(this)}>Previous</button>
             {MatchComponents}
+            <button class="col s1" onClick={this.nextSlide.bind(this)}>Next</button>
+            <div class="col s12">
+              {DotComponents}
+            </div>
           </div>
       )
     }

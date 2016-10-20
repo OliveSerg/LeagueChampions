@@ -1,6 +1,5 @@
 import React from "react";
 import FeaturedMatch from "./FeaturedMatches"
-import DotIndex from "./DotIndex"
 
 export default class Carousel extends React.Component {
     constructor(props){

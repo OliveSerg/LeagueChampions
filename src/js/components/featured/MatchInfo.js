@@ -14,9 +14,9 @@ export default class MatchInfo extends React.Component {
 
     return (
       <div class="row col s4 valign-wrapper">
-        <p class="center-align">{matchMakingQueues[gameQueueConfigId]}</p>
-        <img src=""/>
-        <p class="center-align">{legibleTime}</p>
+        <p class="center-align col s4">{matchMakingQueues[gameQueueConfigId]}</p>
+        <img class="responsive-img col s4" src="../../../images/VS-NOBG.png"/>
+        <p class="center-align col s4">{legibleTime}</p>
       </div>
     )
   }

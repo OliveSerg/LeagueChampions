@@ -50,9 +50,9 @@ export default class Carousel extends React.Component {
       })
       return(
           <div class="my-carousel row">
-            <button class="col s1" onClick={this.prevSlide.bind(this)}>Previous</button>
+            <button class="col s1 btn-floating btn-large" onClick={this.prevSlide.bind(this)}>Previous</button>
             {MatchComponents}
-            <button class="col s1" onClick={this.nextSlide.bind(this)}>Next</button>
+            <button class="col s1 btn-floating btn-large" onClick={this.nextSlide.bind(this)}>Next</button>
             <div class="col s12">
               {DotComponents}
             </div>

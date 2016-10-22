@@ -7,8 +7,19 @@ export default class FeaturedMatches extends React.Component {
     constructor(props) {
       super()
       this.state = {
-        teams: this.filterTeams(props)
+        teams: this.filterTeams(props),
+        time: props.gameLength
       }
+      this.updateTime()
+    }
+
+    updateTime() {
+        setInterval(()=>{
+            let newTime = this.state.time + 1
+            this.setState({
+                time: newTime
+            })
+        }, 1000)
     }
 
     filterTeams(props){
@@ -33,7 +44,7 @@ export default class FeaturedMatches extends React.Component {
     }
 
     render() {
-      const {teams} = this.state
+      const {teams, time} = this.state
       const {bannedChampions, active} = this.props
       let classes = "match row col s10"
       if (active) {
@@ -54,12 +65,12 @@ export default class FeaturedMatches extends React.Component {
             <div class="row col s12">
               {BlueTeamChampions}
             </div>
-            <div class="row col s10">
-              <div class="row col s4">
+            <div class="row col s12 valign-wrapper">
+              <div class="col s4">
                 {BlueTeamBanChamps}
               </div>
-              <MatchInfo key={this.props.gameId} {...this.props}/>
-              <div class="row col s4">
+              <MatchInfo key={this.props.gameId} time={time} {...this.props}/>
+              <div class="col s4">
                 {RedTeamBanChamps}
               </div>
             </div>
@@ -71,10 +82,10 @@ export default class FeaturedMatches extends React.Component {
       } else {
         return(
           <div class={classes}>
-            <div class="row col s12">
+            <div class="row col s12 valign-wrapper">
               {BlueTeamChampions}
             </div>
-            <MatchInfo key={this.props.gameId} {...this.props}/>
+            <MatchInfo key={this.props.gameId} time={time} {...this.props}/>
             <div class="row col s12">
               {RedTeamChampions}
             </div>

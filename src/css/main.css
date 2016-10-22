@@ -1,12 +1,59 @@
-p{
+@font-face {
+    font-family: "Beaufort for LoL";
+    src: url("./fonts/beaufortforlol-regular") format("opentype"); 
+    font-weight: normal;
+}
+@font-face {
+    font-family: "Beaufort for LoL";
+    src: url("./fonts/beaufortforlol-bold") format("opentype");
+    font-weight: bold;
+}
+@font-face {
+    font-family: "Beaufort for LoL";
+    src: url("./fonts/beaufortforlol-italic") format("opentype");
+    font-style: italic;
+}
+@font-face {
+    font-family: "Beaufort for LoL";
+    src: url("./fonts/beaufortforlol-bolditalic") format("opentype");
+    font-style: italic;
+    font-weight: bold;
+}
+
+#app {
+    background-color: #00366C;
+}
+
+nav {
+    background-color: #7382AE;
+}
+
+p {
+  color: #FFC860;
   margin: 0;
 }
+
+.lol-font {
+    font-family: "Beaufort for LoL";
+    font-weight: italic;
+    font-size: medium;
+    text-shadow: 0px 0px 2px royalblue;
+}
+
 .champion {
   width: 20%;
   margin-left: auto;
   left: auto;
   right: auto;
 }
+
+.banned-champion {
+    width: 33.3333%;
+    margin-left: auto;
+    left: auto;
+    right: auto;
+}
+
 .my-carousel > .match {
   display: none;
 }

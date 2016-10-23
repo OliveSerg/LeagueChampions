@@ -1,21 +1,21 @@
 @font-face {
-    font-family: "Beaufort for LoL";
-    src: url("./fonts/beaufortforlol-regular") format("opentype"); 
+    font-family: Beaufort;
+    src: url("./fonts/beaufortforlol-regular.otf"); 
     font-weight: normal;
 }
 @font-face {
-    font-family: "Beaufort for LoL";
-    src: url("./fonts/beaufortforlol-bold") format("opentype");
+    font-family: Beaufort;
+    src: url("./fonts/beaufortforlol-bold.otf");
     font-weight: bold;
 }
 @font-face {
-    font-family: "Beaufort for LoL";
-    src: url("./fonts/beaufortforlol-italic") format("opentype");
+    font-family: Beaufort;
+    src: url("./fonts/beaufortforlol-italic.otf");
     font-style: italic;
 }
 @font-face {
-    font-family: "Beaufort for LoL";
-    src: url("./fonts/beaufortforlol-bolditalic") format("opentype");
+    font-family: Beaufort;
+    src: url("./fonts/beaufortforlol-bolditalic.otf");
     font-style: italic;
     font-weight: bold;
 }
@@ -29,15 +29,16 @@ nav {
 }
 
 p {
-  color: #FFC860;
   margin: 0;
 }
 
 .lol-font {
-    font-family: "Beaufort for LoL";
-    font-weight: italic;
-    font-size: medium;
-    text-shadow: 0px 0px 2px royalblue;
+    font-family: Beaufort;
+    font-weight: bold;
+    font-size: large;
+    background: -webkit-linear-gradient(#8f633b 35%, #d8d069 50%, #8f633b 70%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .champion {

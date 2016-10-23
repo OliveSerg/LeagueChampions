@@ -6,7 +6,9 @@ export default class Carousel extends React.Component {
         super()
         this.state = {
           gameList: props.gameList,
-          currentSlide: 0
+          currentSlide: 0,
+          previousSlide: null,
+          slideAction: null
         }
     }
 
@@ -17,7 +19,8 @@ export default class Carousel extends React.Component {
         prev = gameList.length - 1
       }
       this.setState({
-        currentSlide: prev
+        currentSlide: prev,
+        previousSlide: currentSlide
       })
     }
 
@@ -28,22 +31,26 @@ export default class Carousel extends React.Component {
         next = 0
       }
       this.setState({
-        currentSlide: next
+        currentSlide: next,
+        previousSlide: currentSlide
       })
     }
 
     toggleSlide(ev){
+      const {currentSlide} = this.state
       let slide = parseInt(ev.target.name)
       this.setState({
-        currentSlide: slide
+        currentSlide: slide,
+        previousSlide: currentSlide
       })
     }
 
     render() {
-      const {gameList, currentSlide} = this.state
+      const {gameList, currentSlide, previousSlide, slideAction} = this.state
       const MatchComponents = gameList.map((match, index) => {
-        let isActive = currentSlide === index
-        return <FeaturedMatch active={isActive} key={match.gameId} {...match}/>
+        let isNext = currentSlide === index
+        let isPrev = previousSlide === index
+        return <FeaturedMatch prevSlide={isPrev} nextSlide={isNext} slideAction={slideAction} key={match.gameId} {...match}/>
       })
       const DotComponents = gameList.map((match, index) => {
         return <button onClick={this.toggleSlide.bind(this)} key={index} name={index}>DOT</button>

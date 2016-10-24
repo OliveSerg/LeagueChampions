@@ -46,16 +46,13 @@ export default class FeaturedMatches extends React.Component {
     render() {
       const {teams, time} = this.state
       const {bannedChampions, nextSlide, prevSlide, slideAction} = this.props
-      let classes = "match row col s10"
+      let classes = "match row"
       if (nextSlide) {
-        classes += " active-slide"
+        classes += ` active-slide ${slideAction}`
       } else if (prevSlide) {
-        classes += " previous-slide"
+        classes += ` previous-slide ${slideAction}`
       }
 
-      if (slideAction) {
-        console.log(slideAction);
-      }
       const blueTeam = teams[0]
       const redTeam = teams[1]
 

@@ -20,7 +20,8 @@ export default class Carousel extends React.Component {
       }
       this.setState({
         currentSlide: prev,
-        previousSlide: currentSlide
+        previousSlide: currentSlide,
+        slideAction: "to-right"
       })
     }
 
@@ -32,7 +33,8 @@ export default class Carousel extends React.Component {
       }
       this.setState({
         currentSlide: next,
-        previousSlide: currentSlide
+        previousSlide: currentSlide,
+        slideAction: "to-left"
       })
     }
 
@@ -41,7 +43,8 @@ export default class Carousel extends React.Component {
       let slide = parseInt(ev.target.name)
       this.setState({
         currentSlide: slide,
-        previousSlide: currentSlide
+        previousSlide: currentSlide,
+        slideAction: "to-left"
       })
     }
 

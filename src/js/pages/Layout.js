@@ -7,14 +7,13 @@ import Nav from "../components/layout/Nav";
 export default class Layout extends React.Component {
     render(){
         const {location} = this.props;
-
-
+        const containerStyle = {
+          height: "100%"
+        }
         return (
-            <div>
+            <div style={containerStyle}>
                <Nav location={location} />
-               <div>
-                  {this.props.children}
-               </div>
+               {this.props.children}
                <Footer/>
             </div>
          )

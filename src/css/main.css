@@ -20,8 +20,25 @@
     font-weight: bold;
 }
 
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #00366C;
+}
+
 #app {
-    background-color: #00366C;
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+  height: 100%;
 }
 
 nav {
@@ -41,12 +58,34 @@ p {
     -webkit-text-fill-color: transparent;
 }
 
+.my-carousel {
+  position: relative;
+  height: 100%;
+  text-align: center;
+}
+
+.my-carousel > .match {
+  display: none;
+  position: absolute;
+}
+
+.my-carousel > .active-slide {
+  display: block;
+}
+
 .champion {
+  position: relative;
   float: left;
   width: 20%;
   margin-left: auto;
   left: auto;
   right: auto;
+}
+
+.summoner-name {
+  position: absolute;
+  bottom: 1em;
+  width: 100%;
 }
 
 .banned-champion {
@@ -55,12 +94,4 @@ p {
     margin-left: auto;
     left: auto;
     right: auto;
-}
-
-.my-carousel > .match {
-  display: none;
-}
-
-.my-carousel > .active-slide {
-  display: block;
 }

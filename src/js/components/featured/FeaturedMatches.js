@@ -45,13 +45,8 @@ export default class FeaturedMatches extends React.Component {
 
     render() {
       const {teams, time} = this.state
-      const {bannedChampions, nextSlide, prevSlide, slideAction} = this.props
+      const {bannedChampions} = this.props
       let classes = "match row"
-      if (nextSlide) {
-        classes += ` active-slide ${slideAction}`
-      } else if (prevSlide) {
-        classes += ` previous-slide ${slideAction}`
-      }
 
       const blueTeam = teams[0]
       const redTeam = teams[1]
@@ -73,6 +68,7 @@ export default class FeaturedMatches extends React.Component {
                 {BlueTeamBanChamps}
               </div>
               <MatchInfo key={this.props.gameId} time={time} {...this.props}/>
+              <div class="wrapper"></div>
               <div class="col s4">
                 {RedTeamBanChamps}
               </div>

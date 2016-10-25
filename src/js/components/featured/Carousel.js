@@ -1,11 +1,10 @@
 import React from "react";
-import FeaturedMatch from "./FeaturedMatches"
 
 export default class Carousel extends React.Component {
     constructor(props){
         super()
         this.state = {
-          gameList: props.gameList,
+          length: props.children.length,
           currentSlide: 0,
           previousSlide: null,
           slideAction: null
@@ -13,10 +12,10 @@ export default class Carousel extends React.Component {
     }
 
     prevSlide(){
-      const {currentSlide, gameList} = this.state
+      const {currentSlide, length} = this.state
       let prev = currentSlide - 1
       if (prev < 0) {
-        prev = gameList.length - 1
+        prev = length - 1
       }
       this.setState({
         currentSlide: prev,
@@ -26,9 +25,9 @@ export default class Carousel extends React.Component {
     }
 
     nextSlide(){
-      const {currentSlide, gameList} = this.state
+      const {currentSlide, length} = this.state
       let next = currentSlide + 1
-      if (next > gameList.length - 1) {
+      if (next > length - 1) {
         next = 0
       }
       this.setState({
@@ -49,19 +48,15 @@ export default class Carousel extends React.Component {
     }
 
     render() {
-      const {gameList, currentSlide, previousSlide, slideAction} = this.state
-      const MatchComponents = gameList.map((match, index) => {
-        let isNext = currentSlide === index
-        let isPrev = previousSlide === index
-        return <FeaturedMatch prevSlide={isPrev} nextSlide={isNext} slideAction={slideAction} key={match.gameId} {...match}/>
-      })
-      const DotComponents = gameList.map((match, index) => {
+      const DotComponents = this.props.children.map((match, index) => {
         return <button onClick={this.toggleSlide.bind(this)} key={index} name={index}>DOT</button>
       })
       return(
           <div class="my-carousel row">
             <button class="col s1 btn-floating btn-large" onClick={this.prevSlide.bind(this)}>Previous</button>
-            {MatchComponents}
+            <div class="matchWrapper">
+              {this.props.children}
+            </div>
             <button class="col s1 btn-floating btn-large" onClick={this.nextSlide.bind(this)}>Next</button>
             <div class="col s12">
               {DotComponents}

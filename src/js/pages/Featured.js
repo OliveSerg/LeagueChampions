@@ -2,6 +2,7 @@ import React from 'react'
 import * as MatchActions from "../actions/MatchActions"
 import MatchStore from "../stores/MatchStore"
 import FeaturedMatch from "../components/featured/FeaturedMatches"
+import Slider from "react-slick"
 
 export default class Featured extends React.Component {
     constructor() {
@@ -37,10 +38,19 @@ export default class Featured extends React.Component {
         const MatchComponents = gameList.map((match, index) => {
           return <FeaturedMatch key={match.gameId} {...match}/>
         })
+        const settings = {
+            dots: true,
+            infinite: true,
+            speed: 1000,
+            slidesToShow: 1,
+            slidesToScroll: 1
+        }
         return (
           <div class="container">
             <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
-            {MatchComponents}
+            <Slider {...settings}>
+                {MatchComponents}
+            </Slider>
           </div>
         )
       }else {

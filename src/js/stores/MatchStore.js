@@ -33,6 +33,10 @@ class MatchStore extends EventEmitter {
       return this.matches
     }
 
+    getSummoner(){
+      return this.summoner
+    }
+
     reloadMatches(data) {
       this.matches = data
       this.applyImageURL()
@@ -46,6 +50,16 @@ class MatchStore extends EventEmitter {
       this.emit("change")
     }
 
+    receiveSummoner(responses) {
+      const summoner = {
+        summonerId: responses[0].data.summonerId,
+        championsStat: responses[0].data.champions,
+        rankInfo: responses[1].data[responses[0].data.summonerId]
+      }
+      this.summoner = summoner
+      this.emit('change')
+    }
+
     handleActions(action){
       switch(action.type){
         case 'RECEIVE':{
@@ -54,6 +68,10 @@ class MatchStore extends EventEmitter {
         }
         case "RELOAD": {
           this.reloadMatches(action.data)
+          break
+        }
+        case "SUMMONER": {
+          this.receiveSummoner(action.data)
           break
         }
       }

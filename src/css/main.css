@@ -32,6 +32,11 @@ p {
   margin: 0;
 }
 
+select {
+    display: block;
+    background-color: #00366c;
+}
+
 .lol-font {
     font-family: Beaufort;
     font-weight: bold;
@@ -51,9 +56,11 @@ p {
 }
 
 .summoner-name {
-  position: absolute;
-  bottom: 1em;
-  width: 100%;
+    background: rgba(28, 28, 28, 0.84);
+    box-shadow: 0 0 1px .66px #8f633b;   
+    position: absolute;
+    bottom: 1em;
+    width: 100%;
 }
 
 .banned-champion {

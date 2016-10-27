@@ -5,6 +5,10 @@ var path = require('path');
 module.exports = {
   context: path.join(__dirname, "src"),
   devtool: debug ? "inline-sourcemap" : null,
+  devServer: {
+    hot: true,
+    inline: true
+  },
   entry: "./js/app.js",
   module: {
     loaders: [
@@ -22,6 +26,11 @@ module.exports = {
   output: {
     path: __dirname + "/src/",
     filename: "app.min.js"
+  },
+  externals: {
+    'cheerio': 'window',
+    'react/lib/ExecutionEnvironment': true,
+    'react/lib/ReactContext': true,
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),

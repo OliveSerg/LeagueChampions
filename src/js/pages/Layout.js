@@ -6,13 +6,13 @@ import Nav from "../components/layout/Nav";
 
 export default class Layout extends React.Component {
     render(){
-        const {location} = this.props;
+        const {history} = this.props;
         const containerStyle = {
           height: "100%"
         }
         return (
             <div style={containerStyle}>
-               <Nav location={location} />
+               <Nav history={history} />
                {this.props.children}
                <Footer/>
             </div>

@@ -7,25 +7,29 @@ export default class Nav extends React.Component {
         this.state = {collapsed: true}    
     }
 
+    directTo(ev) {
+        if(ev.keyCode === 13){
+            this.props.history.replaceState(null, `/summoner/${ev.target.value}`,{nationality: this.refs.nationality.value} )
+        }
+    }
+
     render() {
         return(
-            <nav>
-
-                <form id="get-summoner" method='get'>
-                    <input type='text' placeholder="Summoner Id"/>
-                    <select>
-                        <option value='NA'>North America</option>
-                        <option value='EUW'>Europe West</option>
-                        <option value='EUNE'>Europe Nordic East</option>
-                        <option value='BR'>Brazil</option>
-                        <option value='KR'>Korea</option>
-                        <option value='TR'>Turkey</option>
-                        <option value='RU'>Russia</option>
-                        <option value='LAN'>Latin America North</option>
-                        <option value='LAS'>Latin America South</option>
-                        <option value='OCE'>Oceania</option>
-                    </select>
-                </form>
+            <nav class="row">
+                <p class="col s4">League Summoner Source</p>
+                <input class="col s3 offset-s3" onKeyDown={this.directTo.bind(this)} type='text' placeholder="Summoner Id"/>
+                <select class="col s2" ref="nationality">
+                    <option value='na'>North America</option>
+                    <option value='euw'>Europe West</option>
+                    <option value='eune'>Europe Nordic East</option>
+                    <option value='br'>Brazil</option>
+                    <option value='kr'>Korea</option>
+                    <option value='tr'>Turkey</option>
+                    <option value='ru'>Russia</option>
+                    <option value='lan'>Latin America North</option>
+                    <option value='las'>Latin America South</option>
+                    <option value='oce'>Oceania</option>
+                </select>
             </nav>        
         )    
     }

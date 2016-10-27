@@ -11,7 +11,9 @@ export default class Champion extends React.Component {
       return (
         <div class='champion'>
           <img class="responsive-img " src={this.props.imageURL.large}/>
-          <p class="center-align lol-font summoner-name">{this.props.summonerName}</p>
+          <div class="summoner-name">
+             <p class="center-align lol-font">{this.props.summonerName}</p>
+          </div>
         </div>
       )
     } else {

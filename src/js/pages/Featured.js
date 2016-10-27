@@ -41,7 +41,7 @@ export default class Featured extends React.Component {
         const settings = {
             dots: true,
             infinite: true,
-            speed: 1000,
+            speed: 500,
             slidesToShow: 1,
             slidesToScroll: 1
         }
@@ -49,7 +49,21 @@ export default class Featured extends React.Component {
           <div class="container">
             <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
             <Slider {...settings}>
-                {MatchComponents}
+                <div>
+                    {MatchComponents[0]}
+                </div>
+                <div>
+                    {MatchComponents[1]}
+                </div>
+                <div>
+                    {MatchComponents[2]}
+                </div>
+                <div>
+                    {MatchComponents[3]}
+                </div>
+                <div>
+                    {MatchComponents[4]}
+                </div>
             </Slider>
           </div>
         )

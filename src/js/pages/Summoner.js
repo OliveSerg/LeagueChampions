@@ -6,6 +6,7 @@ export default class Summoner extends React.Component {
     constructor(props) {
         super()
         this.state = {
+          getSummoner: this.getSummoner.bind(this),
           summonerName: props.params.id,
           region: props.location.query.region,
           summoner: null,

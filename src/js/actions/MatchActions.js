@@ -32,8 +32,8 @@ export function getSummoner(name, region){
     const urlSummonerByName = `https://${region}.api.pvp.net/api/lol/${region}/v1.4/summoner/by-name/${name}?api_key=`
     axios.get(urlSummonerByName + key.key).then((response)=>{
       const {id} = response.data[name.toLowerCase()]
-      const urlSummonerSummary = `https://${region}.api.pvp.net/api/lol/${region}/v1.3/stats/by-summoner/${id}/ranked?api_key=`
-      const urlSummonerRank = `https://${region}.api.pvp.net/api/lol/${region}/v2.5/league/by-summoner/${id}/entry?api_key=`
+      const urlSummonerSummary = `https://${region}.api.pvp.net/api/lol/${region}/v1.3/stats/by-summoner/${id}/ranked?&api_key=`
+      const urlSummonerRank = `https://${region}.api.pvp.net/api/lol/${region}/v2.5/league/by-summoner/${id}/entry?&api_key=`
 
       var requests = [axios.get(urlSummonerSummary + key.key), axios.get(urlSummonerRank + key.key)]
       Promise.all(requests).then((responses)=>{

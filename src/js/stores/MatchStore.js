@@ -1,5 +1,6 @@
 import {EventEmitter} from 'events'
 import dispatcher from "../dispatcher"
+import * as MatchActions from "../actions/MatchActions"
 
 class MatchStore extends EventEmitter {
     constructor() {
@@ -22,13 +23,13 @@ class MatchStore extends EventEmitter {
     getChampionImgURL(championId){
       let championPNGString = this.champions.data[championId].image.full
       let championJPGString = championPNGString.replace(/.png$/,'_0.jpg')
-      let imageURL =`http://ddragon.leagueoflegends.com/cdn/${this.champions.version}/img/champion/`
       return {
+        splash: `http://ddragon.leagueoflegends.com/cdn/img/champion/splash/${championJPGString}`,
         large: `http://ddragon.leagueoflegends.com/cdn/img/champion/loading/${championJPGString}`,
-        small: imageURL + championPNGString
+        small: `http://ddragon.leagueoflegends.com/cdn/${this.champions.version}/img/champion/${championPNGString}`
       }
     }
-
+    
     getMatches(){
       return this.matches
     }
@@ -51,13 +52,22 @@ class MatchStore extends EventEmitter {
     }
 
     receiveSummoner(responses) {
-      const summoner = {
-        summonerId: responses[0].data.summonerId,
-        championsStat: responses[0].data.champions,
-        rankInfo: responses[1].data[responses[0].data.summonerId]
-      }
-      this.summoner = summoner
-      this.emit('change')
+        if(!this.champions){
+        
+        }
+        const championsStat = responses[0].data.champions.map((champion)=> {
+            if(champion.id !== 0){
+                champion.imageURL = this.getChampionImgURL(champion.id) 
+            }
+            return champion   
+        })
+        const summoner = {
+             summonerId: responses[0].data.summonerId,
+             championsStat,
+             rankInfo: responses[1].data[responses[0].data.summonerId]
+        }
+        this.summoner = summoner
+        this.emit('change')
     }
 
     handleActions(action){
@@ -65,6 +75,10 @@ class MatchStore extends EventEmitter {
         case 'RECEIVE':{
           this.receiveMatches(action.data)
           break;
+        }
+        case "CHAMPIONS": {
+            this.champions = action.data
+            break;
         }
         case "RELOAD": {
           this.reloadMatches(action.data)

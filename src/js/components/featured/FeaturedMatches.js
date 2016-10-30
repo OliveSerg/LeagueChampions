@@ -10,16 +10,16 @@ export default class FeaturedMatches extends React.Component {
         teams: this.filterTeams(props),
         time: props.gameLength
       }
-      this.updateTime()
+      this.setTimer = setInterval(()=>{
+          let newTime = this.state.time + 1
+          this.setState({
+              time: newTime
+          })
+      }, 1000)
     }
-
-    updateTime() {
-        setInterval(()=>{
-            let newTime = this.state.time + 1
-            this.setState({
-                time: newTime
-            })
-        }, 1000)
+    
+    componentWillUnmount(){
+        clearInterval(this.setTimer)
     }
 
     filterTeams(props){

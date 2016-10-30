@@ -12,7 +12,7 @@ ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path='/' component={Layout}>
 			<IndexRoute component={Featured}></IndexRoute>
-      <Route path="summoner(/:id)" component={Summoner}></Route>
+            <Route path="summoner(/:id)" component={Summoner}></Route>
 		</Route>
 	</Router>,
 app)

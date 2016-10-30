@@ -11,15 +11,15 @@ export default class Featured extends React.Component {
         this.state = {
           matches: "Loading"
         }
-        MatchActions.loadMatches()
     }
 
-    componentWillMount() {
+    componentDidMount() {
       MatchStore.on('change', this.getMatches)
+      MatchActions.loadMatches()
     }
 
     componentWillUnmount() {
-      MatchStore.removeListener('change', this.getMatches)
+        MatchStore.removeListener('change', this.getMatches);
     }
 
     getMatches() {

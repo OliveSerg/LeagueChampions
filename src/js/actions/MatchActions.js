@@ -18,6 +18,15 @@ export function loadMatches(){
   })
 }
 
+export function getChampions(){
+    axios.get(urlChampions + key.key).then((response)=>{
+        dispatcher.dispatch({
+            type: "CHAMPIONS",
+            data: response.data
+        })
+    })
+}
+
 export function reloadMatches(){
   axios.get(urlMatches + key.key).then((response)=>{
    dispatcher.dispatch({

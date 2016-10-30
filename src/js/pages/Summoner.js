@@ -1,26 +1,27 @@
 import React from 'react';
 import MatchStore from '../stores/MatchStore'
 import * as MatchActions from '../actions/MatchActions'
+import Title from '../components/summoner/Title'
 
 export default class Summoner extends React.Component {
     constructor(props) {
         super()
+        this.getSummoner = this.getSummoner.bind(this)
         this.state = {
-          getSummoner: this.getSummoner.bind(this),
           summonerName: props.params.id,
           region: props.location.query.region,
           summoner: null,
           loading: true
         }
-        MatchActions.getSummoner(props.params.id, props.location.query.region)
     }
 
-    componentWillMount(){
-      MatchStore.on('change', this.getSummoner)
+    componentDidMount(){
+      MatchStore.on("change", this.getSummoner)
+      MatchActions.getSummoner(this.state.summonerName, this.state.region)
     }
 
     componentWillUnmount(){
-      MatchStore.removeListener('change', this.getSummoner)
+      MatchStore.removeListener("change", this.getSummoner)
     }
 
     getSummoner(){
@@ -31,7 +32,7 @@ export default class Summoner extends React.Component {
     }
 
     render() {
-      const {summoner, loading} = this.state
+      const {summoner, loading, summonerName} = this.state
 
         if (loading) {
           return (
@@ -40,10 +41,12 @@ export default class Summoner extends React.Component {
             </div>
           )
         } else {
-          console.log(summoner);
+            console.log(summoner)
+          const randNum = Math.floor(Math.random()*summoner.championsStat.length)
+          const randomChampionImg = summoner.championsStat[randNum].imageURL
           return(
             <div>
-              Summoner
+                <Title summonerName={summonerName} summonerId={summoner.summonerId} splashImg={randomChampionImg} {...summoner.rankInfo[0]}></Title> 
             </div>
           )
         }

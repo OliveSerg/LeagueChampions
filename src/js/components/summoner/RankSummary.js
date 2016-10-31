@@ -18,7 +18,7 @@ export default class RankSummary extends React.Component {
         tier = this.formatText(tier)
         return (
             <div>
-              <p>{playerOrTeamName}</p>
+              <h2>{playerOrTeamName}</h2>
               <p>Queue: {queue}</p>
               <p>Tier: {tier} {division}</p>
               <p>LeaguePoints: {leaguePoints}</p>

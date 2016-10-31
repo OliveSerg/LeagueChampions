@@ -37,6 +37,13 @@ export default class Summoner extends React.Component {
       })
     }
 
+    updateChampion(ev){
+      const champion = ev.target.id
+      this.setState({
+        currentChampion: this.state.summoner.championsStat[champion]
+      })
+    }
+
     render() {
       const {summoner, loading, summonerName, currentChampion} = this.state
 
@@ -71,7 +78,7 @@ export default class Summoner extends React.Component {
                 <Slider {...settings}>
                     {summoner.championsStat.map((champion, index) => {
                         if(champion.id !== 0){
-                            return <div><img class="responsive-img" key={champion.id} src={champion.imageURL.small}/></div>
+                            return <div><img id={index} onClick={this.updateChampion.bind(this)} class="responsive-img" key={champion.id} src={champion.imageURL.small}/></div>
                         }
                     })}
                 </Slider>

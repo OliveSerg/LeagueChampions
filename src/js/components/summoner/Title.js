@@ -20,7 +20,7 @@ export default class Title extends React.Component {
             <div>
                <img src={splashImg.splash} class="background" />
                <img src={tierImg} class="tier" />
-               <p class="name">{summonerName}</p>
+               <h1 class="name">{summonerName}</h1>
             </div>
         )
     }

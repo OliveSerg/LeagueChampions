@@ -38,6 +38,7 @@ export function reloadMatches(){
 
 export function getSummoner(name, region){
   if (name.match(/^[a-zA-Z\\0-9\\p{L} _\\.]+$/)) {
+    name = name.replace(" ", "%20")
     const urlSummonerByName = `https://${region}.api.pvp.net/api/lol/${region}/v1.4/summoner/by-name/${name}?api_key=`
     axios.get(urlSummonerByName + key.key).then((response)=>{
       const {id} = response.data[name.toLowerCase()]

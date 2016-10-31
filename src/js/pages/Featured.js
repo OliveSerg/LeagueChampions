@@ -35,9 +35,7 @@ export default class Featured extends React.Component {
     render() {
       const {gameList} = this.state.matches;
       if (gameList) {
-        const MatchComponents = gameList.map((match, index) => {
-          return <FeaturedMatch key={match.gameId} {...match}/>
-        })
+        
         const settings = {
             dots: true,
             infinite: true,
@@ -49,21 +47,9 @@ export default class Featured extends React.Component {
           <div class="container">
             <button onClick={this.reloadMatches.bind(this)}>Reload!</button>
             <Slider {...settings}>
-                <div>
-                    {MatchComponents[0]}
-                </div>
-                <div>
-                    {MatchComponents[1]}
-                </div>
-                <div>
-                    {MatchComponents[2]}
-                </div>
-                <div>
-                    {MatchComponents[3]}
-                </div>
-                <div>
-                    {MatchComponents[4]}
-                </div>
+                { gameList.map((match, index) => {
+                   return <div><FeaturedMatch key={match.gameId} {...match}/></div>
+                 })}
             </Slider>
           </div>
         )

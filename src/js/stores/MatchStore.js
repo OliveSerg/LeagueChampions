@@ -29,7 +29,7 @@ class MatchStore extends EventEmitter {
         small: `http://ddragon.leagueoflegends.com/cdn/${this.champions.version}/img/champion/${championPNGString}`
       }
     }
-    
+
     getMatches(){
       return this.matches
     }
@@ -53,13 +53,15 @@ class MatchStore extends EventEmitter {
 
     receiveSummoner(responses) {
         if(!this.champions){
-        
+
         }
         const championsStat = responses[0].data.champions.map((champion)=> {
             if(champion.id !== 0){
-                champion.imageURL = this.getChampionImgURL(champion.id) 
+                champion.imageURL = this.getChampionImgURL(champion.id)
+                champion.name = this.champions.data[champion.id].name
+                champion.title = this.champions.data[champion.id].title
             }
-            return champion   
+            return champion
         })
         const summoner = {
              summonerId: responses[0].data.summonerId,

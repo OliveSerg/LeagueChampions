@@ -13,19 +13,18 @@ export default class RankSummary extends React.Component {
 
     render() {
         let {tier, entries, queue} = this.props
+        const {playerOrTeamName, division, leaguePoints, wins, losses} = entries[0]
         queue = this.formatText(queue)
         tier = this.formatText(tier)
         return (
             <div>
-                <ul>
-                    <li>{entries[0].playerOrTeamName}</li>
-                    <li>Queue: {queue}</li>
-                    <li>Tier: {tier} {entries[0].division}</li>
-                    <li>League Points: {entires[0].leaguePoints}</li>
-                    <li>Wins: {entries[0].wins}</li>
-                    <li>Losses: {entries[0].losses}</li>
-                </ul>
-            </div>        
+              <p>{playerOrTeamName}</p>
+              <p>Queue: {queue}</p>
+              <p>Tier: {tier} {division}</p>
+              <p>LeaguePoints: {leaguePoints}</p>
+              <p>Wins: {wins}</p>
+              <p>Losses: {losses}</p>
+            </div>
         )
     }
 }

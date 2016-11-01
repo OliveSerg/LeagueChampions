@@ -37,6 +37,23 @@ select {
     background-color: #00366c;
 }
 
+.container {
+  background-color: white;
+}
+
+.name {
+  position: absolute;
+  bottom: 1%;
+  margin: 0;
+  background-color: white;
+}
+
+.tier {
+  position: absolute;
+  bottom: 15%;
+  left: 2%;
+}
+
 .lol-font {
     font-family: Beaufort;
     font-weight: bold;
@@ -57,7 +74,7 @@ select {
 
 .summoner-name {
     background: rgba(28, 28, 28, 0.84);
-    box-shadow: 0 0 1px .66px #8f633b;   
+    box-shadow: 0 0 1px .66px #8f633b;
     position: absolute;
     bottom: 1em;
     width: 100%;

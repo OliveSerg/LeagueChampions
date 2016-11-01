@@ -6,7 +6,9 @@ export default class ChampionStats extends React.Component {
     }
 
     render(){
-        const {name, stats, title} = this.props
+        let {name, stats, title} = this.props
+        if (!name) name = "Total for All Champions"
+        if (!title) title = "Stats for all matches in Twisted tree and Summoner's Rift"
         return(
             <div>
                 <h2>{name}</h2>

@@ -18,8 +18,8 @@ export default class Title extends React.Component {
         }
         return (
             <div>
-               <img src={splashImg.splash} class="background" />
-               <img src={tierImg} class="tier" />
+               <img src={splashImg.splash} class=" responsive-img background" />
+               <img class="responsive-img" src={tierImg} class="responsive-img tier" />
                <h1 class="name">{summonerName}</h1>
             </div>
         )

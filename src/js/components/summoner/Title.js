@@ -7,6 +7,7 @@ export default class Title extends React.Component {
 
     render(){
         const {summonerId, summonerName, splashImg, tier, entries} = this.props
+        const style = {position: "relative"}
         let tierImg = ""
         if(tier !== "CHALLENGER" && tier !== "MASTER"){
             const entry = entries.filter((entry)=>{
@@ -17,7 +18,7 @@ export default class Title extends React.Component {
             tierImg = `../../../images/base_icons/${tier}.png`.toLowerCase()
         }
         return (
-            <div>
+            <div style={style}>
                <img src={splashImg.splash} class=" responsive-img background" />
                <img class="responsive-img" src={tierImg} class="responsive-img tier" />
                <h1 class="name">{summonerName}</h1>

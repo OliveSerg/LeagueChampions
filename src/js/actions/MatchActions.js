@@ -19,12 +19,7 @@ export function loadMatches(){
 }
 
 export function getChampions(){
-    axios.get(urlChampions + key.key).then((response)=>{
-        dispatcher.dispatch({
-            type: "CHAMPIONS",
-            data: response.data
-        })
-    })
+   return axios.get(urlChampions + key.key)
 }
 
 export function reloadMatches(){
@@ -45,7 +40,7 @@ export function getSummoner(name, region){
       const urlSummonerSummary = `https://${region}.api.pvp.net/api/lol/${region}/v1.3/stats/by-summoner/${id}/ranked?&api_key=`
       const urlSummonerRank = `https://${region}.api.pvp.net/api/lol/${region}/v2.5/league/by-summoner/${id}/entry?&api_key=`
 
-      var requests = [axios.get(urlSummonerSummary + key.key), axios.get(urlSummonerRank + key.key)]
+      var requests = [axios.get(urlSummonerSummary + key.key), axios.get(urlSummonerRank + key.key), getChampions()]
       Promise.all(requests).then((responses)=>{
         dispatcher.dispatch({
           type: 'SUMMONER',

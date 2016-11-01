@@ -52,8 +52,9 @@ class MatchStore extends EventEmitter {
     }
 
     receiveSummoner(responses) {
+        console.log(responses)
         if(!this.champions){
-
+            
         }
         const championsStat = responses[0].data.champions.map((champion)=> {
             if(champion.id !== 0){
